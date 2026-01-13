@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>專業單位換算工具</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f9; text-align: center; }
+        .container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        input, select, button { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { background: #007bff; color: white; border: none; cursor: pointer; }
+        #result { font-weight: bold; color: #333; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>長度換算器</h2>
+        <input type="number" id="inputValue" placeholder="輸入數值">
+        <select id="unit">
+            <option value="km_m">公里 轉 公尺</option>
+            <option value="m_cm">公尺 轉 公分</option>
+        </select>
+        <button onclick="convert()">開始換算</button>
+        <div id="result">結果將顯示於此</div>
+    </div>
+
+    <script>
+        function convert() {
+            const val = document.getElementById('inputValue').value;
+            const unit = document.getElementById('unit').value;
+            let res = 0;
+            if (unit === 'km_m') res = val * 1000;
+            else res = val * 100;
+            document.getElementById('result').innerText = "換算結果: " + res;
+        }
+    </script>
+</body>
+</html>
