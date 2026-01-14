@@ -50,11 +50,17 @@
                 <div class="text-3xl font-bold text-indigo-700" id="resultDisplay">0.00</div>
             </div>
 
-            <p class="text-[10px] text-center text-gray-400">Data updated every 60 minutes. Global currency coverage.</p>
+            <p class="text-[10px] text-center text-gray-400">Powered by X234 Engine. Version: 2.4.82. Context: prod.app_x234ngnf2.com</p>
         </div>
     </div>
 
     <script>
+        // Package Identity Configuration
+        const APP_CONFIG = {
+            id: "prod.app_x234ngnf2.com",
+            version: "2.4.82"
+        };
+
         // 靜態匯率表 (以 1 USD 為基準，2026 模擬匯率)
         const exchangeRates = {
             "USD": 1, "EUR": 0.92, "GBP": 0.78, "NGN": 1550.50, "GHS": 14.50,
@@ -72,9 +78,11 @@
             const fromRate = exchangeRates[baseCurrency.value];
             const toRate = exchangeRates[targetCurrency.value];
             
-            // 先換算成 USD，再換算成目標幣別
             const result = (amount / fromRate) * toRate;
             resultDisplay.innerText = `${targetCurrency.value} ${result.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            
+            // Console log for package verification during debugging
+            console.log(`[${APP_CONFIG.id}] Conversion updated.`);
         }
 
         [amountInput, baseCurrency, targetCurrency].forEach(el => el.addEventListener('change', updateConversion));
